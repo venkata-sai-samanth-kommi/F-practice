@@ -8,7 +8,17 @@ let customFunc argv =
     for person in argv do
         printfn "Hello %s" person
     printfn "nice to meet you"
-    0
+
+let isValid person = 
+    String.IsNullOrWhiteSpace person |> not
+
+let filter persons = 
+    persons |> Array.filter isValid
+
+let print person = printfn "hello babai %s" person 
+
+let printValidPersons persons = 
+    persons |> filter |> Array.iter print
 
 [<EntryPoint>]
 let main argv =
@@ -17,6 +27,7 @@ let main argv =
                          else 
                             "some person"
     printfn "hello %s welcome" person
+    printValidPersons argv
     // Array.iter functioname arrayname without using for inside the called function
     customFunc argv
     0 // return an integer exit code
