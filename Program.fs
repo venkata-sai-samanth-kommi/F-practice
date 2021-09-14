@@ -4,5 +4,8 @@ open System
 
 [<EntryPoint>]
 let main argv =
-    printfn "Hello World from F#!"
+    let mutable person = "some person"
+    if argv.Length > 0 then 
+        person <- argv.[0]
+    printfn "hello %s welcome" person
     0 // return an integer exit code
